@@ -1,13 +1,20 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.config';
 
 const MyReview = () => {
+    const [userAuth, loadingUser, errorUser] = useAuthState(auth);
+    const navigate=useNavigate();
 
 const handelReview=(event)=>{
  event.preventDefault();
+ const email=event.target.email.value;
  const point=event.target.point.value;
  const review=event.target.review.value;
  console.log(point,review);
  const reviewData={
+     email:email,
      point:point,
      review:review
  }
@@ -19,7 +26,9 @@ const handelReview=(event)=>{
       body:JSON.stringify(reviewData)
     })
     .then(res=>res.json())
-    .then(result=>console.log(result))
+    .then(result=>{if(result.acknowledged){
+        navigate('/')
+    }})
 }
 
     return (
@@ -33,12 +42,25 @@ const handelReview=(event)=>{
         <form onSubmit={handelReview}>
         <div className="form-control mx-auto w-full max-w-xs">
   <label className="label">
+    <span class="label-text">User email</span>
+    
+  </label>
+  <input type="text" name='email'  value={userAuth.email} className="input input-bordered w-full max-w-xs" />
+ 
+</div>
+
+
+        <div className="form-control mx-auto w-full max-w-xs">
+  <label className="label">
     <span class="label-text">Give review point in 5</span>
     
   </label>
   <input type="number" name='point' placeholder="Review point" class="input input-bordered w-full max-w-xs" />
  
 </div>
+
+
+
 
 <div className="form-control mx-auto w-full max-w-xs">
   <label className="label">
