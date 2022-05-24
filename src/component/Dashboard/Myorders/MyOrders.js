@@ -10,7 +10,7 @@ const MyOrders = () => {
     const [user, loadingUser, errorUser] = useAuthState(auth);
     console.log(user?.email)
     
-        const { isLoading, error, data } = useQuery(['order',user], () =>
+        const { isLoading, error, data,refetch } = useQuery(['order',user], () =>
         fetch(`http://localhost:5000/order?email=${user?.email}`).then(res =>
           res.json()
         )
@@ -25,10 +25,12 @@ const MyOrders = () => {
       const handelDeleteOrder=(id)=>{
 console.log("hi",id);
          fetch(`http://localhost:5000/order/${id}`,{
-             method:'DELETE',
+            method:'DELETE'
          })
          .then(res=>res.json())
-         .then(deleteData=>console.log(deleteData))
+         .then(deleteData=>{if(deleteData.deletedCount>0){
+             refetch();
+         }})
       }
     
     return (
@@ -54,8 +56,8 @@ console.log("hi",id);
           {data?.map((singleData,index)=>
           <tr>
           <th>{index+1}</th>
-          <td>{singleData.userEmail}l</td>
-          <td>{singleData.productName} nd</td>
+          <td>{singleData.userEmail}</td>
+          <td>{singleData.productName}</td>
           <td>{singleData.quantity}</td>
           <td>{singleData.totalPrice}</td>
           <td><button class="btn btn-info">Pay Now</button></td>
