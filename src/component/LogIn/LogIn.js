@@ -24,11 +24,13 @@ const LogIn = () => {
    
     const onSubmit =async data =>{
            await signInWithEmailAndPassword(data.email,data.password);
-           let from = location.state?.from?.pathname || "/";
-           navigate(from,{ replace: true });
+           
     } ;
     
-   
+   if(userAuth){
+    let from = location.state?.from?.pathname || "/";
+    navigate(from,{ replace: true });
+   }
    
     return (
         <div className='pt-10'>
