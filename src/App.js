@@ -21,7 +21,7 @@ function App() {
        <Route path='/blog' element={<Blog></Blog>}></Route>
        <Route path='/logIn' element={<LogIn></LogIn>}></Route>
        <Route path='/registration' element={<Registration></Registration>}></Route>
-       <Route path='/purchase' element={<RequireAuth> <Purchase mainData={mainData}></Purchase></RequireAuth>}></Route>
+       <Route path='/purchase/:id' element={<RequireAuth> <Purchase mainData={mainData}></Purchase></RequireAuth>}></Route>
      </Routes>
      
     </div>

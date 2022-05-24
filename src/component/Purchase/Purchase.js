@@ -1,37 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useParams } from 'react-router-dom';
 import auth from '../../firebase.config';
 import Spinner from '../Spinner/Spinner';
 
 
-const Purchase = (props) => {
+const Purchase = () => {
     
    
   const [user, loading, error] = useAuthState(auth);
     // console.log(props.mainData);
-    let {mainData}=props;
-   const {Available_quantity,Minimum_quantity,Price,name}=mainData;
-    const [increase,setIncrease]=useState(Minimum_quantity);
+    
+    const [mainData,setMainData]=useState({});
+   
+    
+    const param=useParams();
+    // console.log(param.id)
+    useEffect(()=>{
+      fetch(`http://localhost:5000/purchase/${param.id}`)
+      .then(res=>res.json())
+      .then(data=>setMainData(data))
+    },[])
+    const {Available_quantity,Minimum_quantity,Price,name}=mainData;
+    const [increase,setIncrease]=useState(0);
   
-    const handelIncrease=()=>{
-        if(increase<Available_quantity){
-            setIncrease(increase+1);   
-        }
-        else{
-            setIncrease(increase);
-        }
-          
+   
+    const handelIncreaseData=()=>{
+     setIncrease(increase+1);
+      
     }
-    const handelDecrease=()=>{
-        if(increase>Minimum_quantity){
-            setIncrease(increase-1); 
-            
-        }
-        else{
-            setIncrease(increase);
-        }
-          
+    const handelDecreaseData=()=>{
+      setIncrease(increase-1);
     }
+    
+    
+   let totalQuantity=Minimum_quantity+increase;
+ 
     
    
 
@@ -51,12 +55,27 @@ const handelPurchaseSubmit=(event)=>{
 
     return (
         <div>
+          
             <div className='w-1/3 mx-auto'>
            <div className="card card-compact  bg-base-100 shadow-xl">
   
   <div className="card-body items-center  text-center">
     <h2 className="card-title">Purchase Form</h2>
       <div className="purchase_form w-full">
+
+        <div>
+        <label className="label">
+    <span className="label-text">Purchase Quantity</span>
+   </label>
+        <div className='grid grid-cols-3 gap-6'> 
+      <button onClick={handelDecreaseData}  class="btn btn-outline btn-success text-base">-</button>
+          <input type="number" value={totalQuantity}  placeholder="Type here" class="input input-bordered" />
+  <button onClick={ handelIncreaseData} class="btn btn-outline btn-success text-base">+</button>
+ </div>
+ {totalQuantity>Available_quantity && <p className='text-red-600'>you do not give many order to Available quantity</p>}
+ {totalQuantity<Minimum_quantity && <p className='text-red-600'>you do not give low order to Minimum quantity</p>}
+        </div>
+      
         <form onSubmit={handelPurchaseSubmit}>
           <div className="form-control mx-auto w-full max-w-xs">
   <label className="label">
@@ -100,9 +119,9 @@ const handelPurchaseSubmit=(event)=>{
 <label className="label">
     <span className="label-text">Purchase Quantity</span>
    </label>
-    <div className='grid grid-cols-3 gap-6'><button onClick={handelDecrease} class="btn btn-outline btn-success text-base">-</button>
-  <input type="number" value={increase} name='quantity' placeholder="Type here" class="input input-bordered" />
-  <button onClick={handelIncrease} class="btn btn-outline btn-success text-base">+</button></div>
+    
+  <input type="number" value={totalQuantity} name='quantity' placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+ 
  
 </div>
 
@@ -110,11 +129,12 @@ const handelPurchaseSubmit=(event)=>{
   <label className="label">
     <span className="label-text">Total product Price</span>
    </label>
-  <input type="number" name='price' value={increase*Price}  class="input input-bordered w-full max-w-xs" />
+  <input type="number" name='price' value={totalQuantity*Price}  class="input input-bordered w-full max-w-xs" />
   </div>
 
-<input className="btn btn-success w-full max-w-xs mt-5" type="submit" value="Order Now" />
+<input disabled={totalQuantity>Available_quantity||totalQuantity<Minimum_quantity} className="btn btn-success w-full max-w-xs mt-5" type="submit" value="Order Now" />
           </form>
+         
       </div>
    
   </div>

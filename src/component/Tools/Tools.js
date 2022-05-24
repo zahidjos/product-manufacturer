@@ -8,17 +8,17 @@ const Tools = (props) => {
 
     const [data,setData]=useState([]);
     useEffect(()=>{
-        fetch('data.json')
+        fetch('http://localhost:5000/items')
         .then(res=>res.json())
         .then(data=>setData(data))
     },[])
     const handelPurchase=(productData)=>{
-   setMainData(productData);
+  //  setMainData(productData);
   
-  
+  console.log(productData)
 
    
-    navigate('/purchase')
+    navigate(`/purchase/${productData}`)
     }
     return (
         <div className='container mx-auto grid gap-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
@@ -37,7 +37,7 @@ const Tools = (props) => {
                   <h5 className='font-medium'>Available quantity: {singleData.Available_quantity}</h5>
                   <h5 className='font-medium'>Price: {singleData.Price}$</h5>
                   <div class="card-actions">
-                    <button class="btn btn-primary" onClick={()=>handelPurchase(singleData)}>Buy Now</button>
+                    <button class="btn btn-primary" onClick={()=>handelPurchase(singleData._id)}>Buy Now</button>
                   </div>
                 </div>
               </div>)
