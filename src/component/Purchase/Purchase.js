@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../firebase.config';
 import Spinner from '../Spinner/Spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Purchase = () => {
     
-   
+  const notify = () => toast("Your Order submitted");
   const [user, loading, error] = useAuthState(auth);
     // console.log(props.mainData);
     
@@ -37,7 +39,7 @@ const Purchase = () => {
    let totalQuantity=Minimum_quantity+increase;
  
     
-   
+   const navigate=useNavigate()
 
 const handelPurchaseSubmit=(event)=>{
     event.preventDefault()
@@ -49,12 +51,39 @@ const handelPurchaseSubmit=(event)=>{
     const quantity=event.target.quantity.value;
     const price=event.target.price.value;
     console.log(email,name,productName,address,number,quantity,price);
+    let orderData={
+      userEmail:email,
+      userName:name,
+      productName:productName,
+      address:address,
+      number:number,
+      quantity:quantity,
+      totalPrice:price
+    }
+
+    fetch('http://localhost:5000/order',{
+      method:'POST',
+      headers:{
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(orderData)
+    })
+    .then(res=>res.json())
+    .then(result=>{ if(result.acknowledged){
+    notify();
+    // navigate('/')
+    
+    }})
+
+    
+    
 }
 
 
 
     return (
         <div>
+          <ToastContainer />
           
             <div className='w-1/3 mx-auto'>
            <div className="card card-compact  bg-base-100 shadow-xl">
