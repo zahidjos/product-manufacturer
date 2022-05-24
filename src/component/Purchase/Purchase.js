@@ -74,10 +74,7 @@ const handelPurchaseSubmit=(event)=>{
     // navigate('/')
     
     }})
-
-    
-    
-}
+   }
 
 
 

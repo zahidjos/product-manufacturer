@@ -23,7 +23,9 @@ const Navbar = () => {
       <ul tabindex="0"  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>Blog</Link></li>
-        <li><Link to='/logIn'>Log In</Link></li>
+        {user && <li><Link to='/dashboard'>Dashboard</Link></li> }
+      {user?<li><button onClick={logout} class="btn btn-info">Log Out</button></li>:<li><Link to='/logIn'>Log In</Link></li>}
+        
       </ul>
     </div>
     <a  className="btn btn-ghost normal-case text-xl">daisyUI</a>
@@ -32,6 +34,8 @@ const Navbar = () => {
     <ul  className="menu menu-horizontal p-0">
       <li><Link to='/'>Home</Link></li>
       <li><Link to='/blog'>Blog</Link></li>
+      
+      {user && <li><Link to='/dashboard'>Dashboard</Link></li> }
       {user?<li><button onClick={logout} class="btn btn-info">Log Out</button></li>:<li><Link to='/logIn'>Log In</Link></li>}
       
     </ul>
