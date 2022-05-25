@@ -14,6 +14,8 @@ const Dashboard = () => {
       <li><Link to='myOrders'>My Orders</Link></li>
       <li><Link to='addReview'>Add a Review</Link></li>
       <li><Link to='profile'>My Profile</Link></li>
+      <li><Link to='mangeOrder'>Mange All Orders</Link></li>
+      <li><Link to='makeAdmin'>Make Admin</Link></li>
       </ul>
     </div>
     
@@ -23,6 +25,8 @@ const Dashboard = () => {
       <li><Link to='myOrders'>My Orders</Link></li>
       <li><Link to='addReview'>Add a Review</Link></li>
       <li><Link to='profile'>My Profile</Link></li>
+      <li><Link to='mangeOrder'>Mange All Orders</Link></li>
+      <li><Link to='makeAdmin'>Make Admin</Link></li>
     </ul>
   </div>
   

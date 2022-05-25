@@ -1,10 +1,11 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.config';
 import Spinner from '../Spinner/Spinner';
+import TokenHook from '../TokenHook/TokenHook';
 
 
 const Registration = () => {
@@ -20,8 +21,9 @@ const Registration = () => {
       const [sendEmailVerification, sending, errorsend] = useSendEmailVerification(
         auth
       );
-      const [signInWithGoogle, usergoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
-     
+      const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+     const[token]=TokenHook(user1||userGoogle);
+     const navigate=useNavigate();
    
     const onSubmit =async (data )=>{
         // console.log(data)
@@ -33,9 +35,13 @@ const Registration = () => {
 
 
     
-    } ;
+    } 
+    
     if(loading||loading1||updating||sending){
       return <Spinner></Spinner>
+    }
+    if(token){
+      navigate('/');
     }
     
     return (

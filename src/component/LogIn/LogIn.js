@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './LogIn.css'
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.config';
 import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Spinner from '../Spinner/Spinner';
+import TokenHook from '../TokenHook/TokenHook';
 
 const LogIn = () => {
     const { register, handleSubmit,formState: { errors } } = useForm();
@@ -14,8 +15,11 @@ const LogIn = () => {
       loading,
       error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle, usergoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
     const [userAuth, loadingUser, errorUser] = useAuthState(auth);
+
+    const[token]=TokenHook(user||userGoogle);
+
     const location=useLocation();
     const navigate=useNavigate();
     if(loadingUser||loading){
@@ -24,12 +28,18 @@ const LogIn = () => {
    
     const onSubmit =async data =>{
            await signInWithEmailAndPassword(data.email,data.password);
+           if(userAuth){
+             console.log(userAuth);
+           }
+           
            
     } ;
+
     
-   if(userAuth){
-    let from = location.state?.from?.pathname || "/";
+   if(token){
+     let from = location.state?.from?.pathname || "/";
     navigate(from,{ replace: true });
+    
    }
    
     return (
