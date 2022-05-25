@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const MangeOrder = () => {
-    const[mangeOrder,setMangeOrder]=useState();
+    const[mangeOrder,setMangeOrder]=useState([]);
 
 useEffect(()=>{
     fetch('http://localhost:5000/mangeOrder',{
@@ -31,7 +31,7 @@ useEffect(()=>{
     <tbody>
      
       
-          {mangeOrder?.map((singleMangeOrder,index)=>
+          {mangeOrder.map((singleMangeOrder,index)=>
           <tr>
           <th>{index+1}</th>
           <td>{singleMangeOrder.userEmail}</td>

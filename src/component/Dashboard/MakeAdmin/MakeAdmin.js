@@ -1,29 +1,64 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 const MakeAdmin = () => {
-const[admin,setAdmin]=useState();
+  const { isLoading, error, data,refetch } = useQuery('user', () =>
+  fetch(`http://localhost:5000/users`,{ method:'GET', headers:{
+   'authorization':`Bearer ${localStorage.getItem('accessToken')}`
+    }
+  }).then(res =>
+    res.json()
+  ))
 
-useEffect(()=>{
-    fetch('http://localhost:5000/users',{
-      method:'GET',
-      headers:{
-        'authorization':`Bearer ${localStorage.getItem('accessToken')}`
-      }
-    })
-    .then(res=>res.json())
-    .then(data=>setAdmin(data))
-},[])
+const handelAddAdmin=(email)=>{
+console.log(email);
+const adminRole={
+  role:"admin"
+}
+fetch(`http://localhost:5000/admin/${email}`,{
+  method:'PUT',
+  headers:{
+    'content-type':'application/json'
+  },
+  body:JSON.stringify(adminRole)
+})
+.then(res=>res.json())
+.then(result=>{if(result.acknowledged){
+  refetch()
+}})
+}
 
-console.log(admin)
+const handelCancelAdmin=(email)=>{
+  const adminRole={
+    role:""
+  }
+  fetch(`http://localhost:5000/admin/${email}`,{
+    method:'PUT',
+    headers:{
+      'content-type':'application/json'
+    },
+    body:JSON.stringify(adminRole)
+  })
+  .then(res=>res.json())
+  .then(result=>{if(result.acknowledged){
+    refetch()
+  }})
+}
+
+
+
+
+
     return (
         <div>
-            {admin?.length}
+           
             <div>
             <div class="overflow-x-auto">
   <table class="table w-full">
     
     <thead>
       <tr>
+        <th></th>
         <th></th>
         <th>User Email</th>
         <th></th>
@@ -32,12 +67,15 @@ console.log(admin)
     </thead>
     <tbody>
 
-     {admin?.map((singleAdmin,index)=>
+     {data?.map((singleAdmin,index)=>
+     
       <tr>
       <th>{index+1}</th>
+      <th>{singleAdmin?.role}</th>
+      
       <td>{singleAdmin.email}</td>
-      <td><button class="btn btn-xs">Make Admin</button></td>
-      <td><button class="btn btn-xs">Cancel Admin</button></td>
+      <td>{singleAdmin?.role==='admin'?"": <button onClick={()=>handelAddAdmin(singleAdmin.email)} class="btn btn-xs">Make Admin</button>}</td>
+      <td>{singleAdmin?.role==='admin'?<button onClick={()=>handelCancelAdmin(singleAdmin.email)} class="btn btn-xs">Cancel Admin</button>:""}</td>
     </tr>
      )}
      
