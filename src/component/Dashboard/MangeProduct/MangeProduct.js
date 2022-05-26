@@ -21,7 +21,7 @@ const MangeProduct = () => {
         <div>
             {data?.length}
             <div className="overflow-x-auto">
-  <table className="table w-full">
+  <table className="table w-full ">
    
     <thead>
       <tr>

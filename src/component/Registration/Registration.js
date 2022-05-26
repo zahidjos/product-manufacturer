@@ -6,6 +6,7 @@ import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerificati
 import auth from '../../firebase.config';
 import Spinner from '../Spinner/Spinner';
 import TokenHook from '../TokenHook/TokenHook';
+import AdminHook from '../AdminHook/AdminHook';
 
 
 const Registration = () => {
@@ -23,6 +24,7 @@ const Registration = () => {
       );
       const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
      const[token]=TokenHook(user1||userGoogle);
+     const[admin]=AdminHook(user1||userGoogle)
      const navigate=useNavigate();
    
     const onSubmit =async (data )=>{

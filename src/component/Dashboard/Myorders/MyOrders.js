@@ -1,14 +1,16 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.config';
 import Spinner from '../../Spinner/Spinner';
 
 
 
 const MyOrders = () => {
+  const navigate=useNavigate()
     const [user, loadingUser, errorUser] = useAuthState(auth);
-    console.log(user?.email)
+   
     
         const { isLoading, error, data,refetch } = useQuery(['order',user], () =>
         fetch(`http://localhost:5000/order?email=${user?.email}`).then(res =>
@@ -23,7 +25,7 @@ const MyOrders = () => {
         return  <Spinner></Spinner>
       }
       const handelDeleteOrder=(id)=>{
-console.log("hi",id);
+// console.log("hi",id);
          fetch(`http://localhost:5000/order/${id}`,{
             method:'DELETE'
          })
@@ -32,7 +34,12 @@ console.log("hi",id);
              refetch();
          }})
       }
-    
+
+      const handelPayment=(id)=>{
+              navigate(`/dashboard/payment/${id}`)
+             
+      }
+    console.log(data);
     return (
         <div>
            
@@ -60,8 +67,8 @@ console.log("hi",id);
           <td>{singleData.productName}</td>
           <td>{singleData.quantity}</td>
           <td>{singleData.totalPrice}</td>
-          <td><button class="btn btn-info">Pay Now</button></td>
-          <td><button onClick={()=>handelDeleteOrder(singleData._id)} class="btn btn-success">Cancel Order</button></td>
+          <td> {singleData?.paid===true?"paid":<button onClick={()=>handelPayment(singleData._id)}  class="btn btn-info">Pay Now</button>} </td>
+          <td> {singleData?.paid===true?singleData.transitionID:<button onClick={()=>handelDeleteOrder(singleData._id)} class="btn btn-success">Cancel Order</button>}</td>
           
           </tr>
           )}

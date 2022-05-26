@@ -6,6 +6,7 @@ import auth from '../../firebase.config';
 import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Spinner from '../Spinner/Spinner';
 import TokenHook from '../TokenHook/TokenHook';
+import AdminHook from '../AdminHook/AdminHook';
 
 const LogIn = () => {
     const { register, handleSubmit,formState: { errors } } = useForm();
@@ -19,6 +20,7 @@ const LogIn = () => {
     const [userAuth, loadingUser, errorUser] = useAuthState(auth);
 
     const[token]=TokenHook(user||userGoogle);
+    const [admin]=AdminHook(user||userGoogle)
 
     const location=useLocation();
     const navigate=useNavigate();

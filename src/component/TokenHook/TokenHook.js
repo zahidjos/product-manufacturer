@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 const TokenHook = (user) => {
    const [token,setToken]=useState('')
-  
+             
     useEffect(()=>{
+      
         const email=user?.user?.email
+       
         const userEmail={email:email}
         if(email){
             fetch(`http://localhost:5000/users/${email}`,{
