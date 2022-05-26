@@ -3,12 +3,12 @@ import { useQuery } from 'react-query';
 
 const MangeProduct = () => {
     const { isLoading, error, data,refetch } = useQuery('user', () =>
-        fetch(`http://localhost:5000/items`).then(res =>
+        fetch(`https://arcane-garden-55931.herokuapp.com/items`).then(res =>
           res.json()
         )
       )
        const handelDeleteItem=(id)=>{
-        fetch(`http://localhost:5000/items/${id}`,{
+        fetch(`https://arcane-garden-55931.herokuapp.com/items/${id}`,{
             method:'DELETE'
          })
          .then(res=>res.json())

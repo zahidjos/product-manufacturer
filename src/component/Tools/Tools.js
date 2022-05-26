@@ -8,7 +8,7 @@ const Tools = (props) => {
 
     const [data,setData]=useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/items')
+        fetch('https://arcane-garden-55931.herokuapp.com/items')
         .then(res=>res.json())
         .then(data=>setData(data))
     },[])
@@ -21,9 +21,12 @@ const Tools = (props) => {
     navigate(`/purchase/${productData}`)
     }
     return (
-        <div className='container mx-auto grid gap-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
-           
+      <div className='w-11/12 mx-auto py-10'>
+         <h3 className='text-center text-gray-600 text-4xl font-semibold'>Parts part</h3>
 
+        <div className='container mt-10   mx-auto grid gap-5 lg:grid-cols-3 w-11/12 md:grid-cols-2 sm:grid-cols-1'>
+           
+            
             
             {
                 data.map((singleData)=><div class="card w-100 bg-base-100 shadow-xl">
@@ -43,6 +46,7 @@ const Tools = (props) => {
               </div>)
             }
            
+        </div>
         </div>
     );
 };

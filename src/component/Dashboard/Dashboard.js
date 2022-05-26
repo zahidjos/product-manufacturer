@@ -11,6 +11,7 @@ const Dashboard = () => {
     return (
         <div>
             <div class="navbar bg-slate-900 text-slate-50">
+              
   <div class="navbar-start">
     <div class="dropdown">
       <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -29,7 +30,7 @@ const Dashboard = () => {
     </div>
     
   </div>
-  <div class="navbar-center  hidden lg:flex">
+  <div class="navbar-end  hidden lg:flex">
     <ul class="menu   menu-horizontal p-0">
      {admin?.role==="admin"? "":<li><Link to='myOrders'>My Orders</Link></li>} 
      {admin?.role==="admin"? "":<li><Link to='addReview'>Add a Review</Link></li>} 
@@ -49,6 +50,7 @@ const Dashboard = () => {
 </div>
 <div>
 <Outlet />
+
 </div>
 
         </div>

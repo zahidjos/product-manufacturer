@@ -23,7 +23,7 @@ const UpdateProfile = () => {
             age:age
         }
         // console.log(profileData);
-        fetch(`http://localhost:5000/profile/${email}`,{
+        fetch(`https://arcane-garden-55931.herokuapp.com/profile/${email}`,{
             method:'PUT',
             headers:{
               'content-type':'application/json'

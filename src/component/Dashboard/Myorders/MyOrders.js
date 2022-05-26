@@ -13,7 +13,7 @@ const MyOrders = () => {
    
     
         const { isLoading, error, data,refetch } = useQuery(['order',user], () =>
-        fetch(`http://localhost:5000/order?email=${user?.email}`).then(res =>
+        fetch(`https://arcane-garden-55931.herokuapp.com/order?email=${user?.email}`).then(res =>
           res.json()
         )
       )
@@ -26,7 +26,7 @@ const MyOrders = () => {
       }
       const handelDeleteOrder=(id)=>{
 // console.log("hi",id);
-         fetch(`http://localhost:5000/order/${id}`,{
+         fetch(`https://arcane-garden-55931.herokuapp.com/order/${id}`,{
             method:'DELETE'
          })
          .then(res=>res.json())
@@ -67,7 +67,7 @@ const MyOrders = () => {
           <td>{singleData.productName}</td>
           <td>{singleData.quantity}</td>
           <td>{singleData.totalPrice}</td>
-          <td> {singleData?.paid===true?"paid":<button onClick={()=>handelPayment(singleData._id)}  class="btn btn-info">Pay Now</button>} </td>
+          <td> {singleData?.paid===true?"paid":<button onClick={()=>handelPayment(singleData._id)}  className="btn btn-info">Pay Now</button>} </td>
           <td> {singleData?.paid===true?singleData?.transitionID:<button onClick={()=>handelDeleteOrder(singleData._id)} class="btn btn-success">Cancel Order</button>}</td>
           
           </tr>

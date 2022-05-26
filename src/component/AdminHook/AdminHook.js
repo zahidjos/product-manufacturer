@@ -7,7 +7,7 @@ const AdminHook = (user) => {
         const email=user?.email
        
         if(email){
-            fetch(`http://localhost:5000/users/${email}`)
+            fetch(`https://arcane-garden-55931.herokuapp.com/users/${email}`)
               .then(res=>res.json())
               .then(data=>
                 setAdmin(data)

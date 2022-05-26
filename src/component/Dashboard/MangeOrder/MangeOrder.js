@@ -4,7 +4,7 @@ const MangeOrder = () => {
     const[mangeOrder,setMangeOrder]=useState([]);
 
 useEffect(()=>{
-    fetch('http://localhost:5000/mangeOrder',{
+    fetch('https://arcane-garden-55931.herokuapp.com/mangeOrder',{
       method:'GET',
       headers:{
         'authorization':`Bearer ${localStorage.getItem('accessToken')}`

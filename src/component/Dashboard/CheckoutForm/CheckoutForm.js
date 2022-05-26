@@ -12,16 +12,21 @@ const CheckoutForm = ({order}) => {
     const [confirmPayment,setConfirmPayment]=useState('')
 
     useEffect(()=>{
-        fetch('http://localhost:5000/create-payment-intent',{
+     if(order.price){
+      fetch('https://arcane-garden-55931.herokuapp.com/create-payment-intent',{
             method:'POST',
             headers:{
                 'content-type':'application/json'
             },
-            body:JSON.stringify({price:order.totalPrice})
+            body:JSON.stringify({price:order?.totalPrice})
         })
         .then(res=>res.json())
-        .then(data=>setSecret(data.clientSecret))
-    },[order.totalPrice])
+        .then(data=>{setSecret(data.clientSecret)
+            console.log(data.clientSecret)
+        })
+     }
+        
+    },[order?.totalPrice])
 
    
 
@@ -78,7 +83,7 @@ const CheckoutForm = ({order}) => {
             transitionID:confirmPayment
         }
        if(confirmPayment){
-        fetch(`http://localhost:5000/order/${order._id}`,{
+        fetch(`https://arcane-garden-55931.herokuapp.com/order/${order._id}`,{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'

@@ -9,10 +9,12 @@ const Payment = () => {
     const param=useParams();
     const [order,setOrder]=useState({});
     useState(()=>{
-        fetch(`http://localhost:5000/order/${param.id}`)
+        fetch(`https://arcane-garden-55931.herokuapp.com/orders/${param.id}`)
         .then(res=>res.json())
-        .then(result=>setOrder(result))
-    },[param.id])
+        .then(result=>{setOrder(result)
+              console.log(result)       
+        })
+    },[])
     return (
         <div>
             <h1>Hi:{param.id}</h1>

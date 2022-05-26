@@ -19,7 +19,7 @@ const Purchase = () => {
     const param=useParams();
     // console.log(param.id)
     useEffect(()=>{
-      fetch(`http://localhost:5000/purchase/${param.id}`)
+      fetch(`https://arcane-garden-55931.herokuapp.com/purchase/${param.id}`)
       .then(res=>res.json())
       .then(data=>setMainData(data))
     },[])
@@ -61,7 +61,7 @@ const handelPurchaseSubmit=(event)=>{
       totalPrice:price
     }
 
-    fetch('http://localhost:5000/order',{
+    fetch('https://arcane-garden-55931.herokuapp.com/order',{
       method:'POST',
       headers:{
         'content-type':'application/json'
@@ -94,7 +94,7 @@ const handelPurchaseSubmit=(event)=>{
     <span className="label-text">Purchase Quantity</span>
    </label>
         <div className='grid grid-cols-3 gap-6'> 
-      <button onClick={handelDecreaseData}  class="btn btn-outline btn-success text-base">-</button>
+      <button onClick={handelDecreaseData}  className="btn btn-outline btn-success text-base">-</button>
           <input type="number" value={totalQuantity}  placeholder="Type here" class="input input-bordered" />
   <button onClick={ handelIncreaseData} class="btn btn-outline btn-success text-base">+</button>
  </div>
@@ -107,20 +107,20 @@ const handelPurchaseSubmit=(event)=>{
   <label className="label">
     <span className="label-text">User Email</span>
    </label>
-  <input type="email" name='email' value={user.email}  class="input input-bordered w-full max-w-xs" />
+  <input type="email" name='email' value={user.email}  className="input input-bordered w-full max-w-xs" />
   </div>
 <div className="form-control mx-auto w-full max-w-xs">
   <label className="label">
     <span className="label-text">User name</span>
    </label>
-  <input type="text" name='userName' value={user.displayName}  class="input input-bordered w-full max-w-xs" />
+  <input type="text" name='userName' value={user.displayName}  className="input input-bordered w-full max-w-xs" />
   </div>
 
 <div className="form-control mx-auto w-full max-w-xs">
   <label className="label">
     <span className="label-text">Product Name</span>
    </label>
-  <input type="text" name='productName' value={mainData.name}  class="input input-bordered w-full max-w-xs" />
+  <input type="text" name='productName' value={mainData.name}  className="input input-bordered w-full max-w-xs" />
   </div>
 
 
@@ -135,7 +135,7 @@ const handelPurchaseSubmit=(event)=>{
   <label className="label">
     <span className="label-text">user Number</span>
    </label>
-  <input type="number" name='number'  class="input input-bordered w-full max-w-xs" />
+  <input type="number" name='number'  className="input input-bordered w-full max-w-xs" />
   </div>
 
 
@@ -155,7 +155,7 @@ const handelPurchaseSubmit=(event)=>{
   <label className="label">
     <span className="label-text">Total product Price</span>
    </label>
-  <input type="number" name='price' value={totalQuantity*Price}  class="input input-bordered w-full max-w-xs" />
+  <input type="number" name='price' value={totalQuantity*Price}  className="input input-bordered w-full max-w-xs" />
   </div>
 
 <input disabled={totalQuantity>Available_quantity||totalQuantity<Minimum_quantity} className="btn btn-success w-full max-w-xs mt-5" type="submit" value="Order Now" />

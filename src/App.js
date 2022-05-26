@@ -19,6 +19,8 @@ import AddProduct from './component/Dashboard/AddProduct/AddProduct';
 import MangeProduct from './component/Dashboard/MangeProduct/MangeProduct';
 import Payment from './component/Dashboard/Payment/Payment';
 import UpdateProfile from './component/Dashboard/UpdateProfile/UpdateProfile';
+import MyPortfolio from './component/Myportfolio/MyPortfolio';
+import NotFound from './component/NotFound/NotFound';
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
          <Route path='payment/:id' element={<Payment></Payment>}></Route>
          <Route path='updateProfile' element={<UpdateProfile></UpdateProfile>}></Route>
        </Route>
+       <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
+       <Route path='*' element={<NotFound></NotFound>}></Route>
      </Routes>
      
     </div>

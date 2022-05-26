@@ -35,7 +35,7 @@ const AddProduct = () => {
                     image:image
                 }
                 
-                fetch('http://localhost:5000/items',{
+                fetch('https://arcane-garden-55931.herokuapp.com/items',{
                     method:'POST',
                     headers:{
                       'content-type':'application/json'
@@ -77,7 +77,7 @@ const AddProduct = () => {
   <label className="label">
     <span className="label-text">Product name</span>
    </label>
-  <input type="text" name='productName' placeholder='Enter a product Name'  class="input input-bordered w-full max-w-xs" />
+  <input type="text" name='productName' placeholder='Enter a product Name'  className="input input-bordered w-full max-w-xs" />
   </div>
 
   <div className="form-control mx-auto w-full max-w-xs">
@@ -91,7 +91,7 @@ const AddProduct = () => {
   <label className="label">
     <span className="label-text">Available Quantity</span>
    </label>
-  <input type="number" name='availableQuantity' placeholder='Type Available Quantity'   class="input input-bordered w-full max-w-xs" />
+  <input type="number" name='availableQuantity' placeholder='Type Available Quantity'   className="input input-bordered w-full max-w-xs" />
   </div>
 
 <div class="mx-auto mt-6  w-full max-w-xs">
@@ -115,7 +115,7 @@ const AddProduct = () => {
   <label className="label">
     <span className="label-text">Product Image</span>
    </label>
-  <input type="file" name='image'  class="input input-bordered w-full max-w-xs" />
+  <input type="file" name='image'  className="input input-bordered w-full max-w-xs" />
   </div>
 
 <input  className="btn btn-success w-full max-w-xs mt-5" type="submit" value="Add Now" />

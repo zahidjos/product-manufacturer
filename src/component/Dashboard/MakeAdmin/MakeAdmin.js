@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 const MakeAdmin = () => {
   const { isLoading, error, data,refetch } = useQuery('user', () =>
-  fetch(`http://localhost:5000/users`,{ method:'GET', headers:{
+  fetch(`https://arcane-garden-55931.herokuapp.com/users`,{ method:'GET', headers:{
    'authorization':`Bearer ${localStorage.getItem('accessToken')}`
     }
   }).then(res =>
@@ -15,7 +15,7 @@ console.log(email);
 const adminRole={
   role:"admin"
 }
-fetch(`http://localhost:5000/admin/${email}`,{
+fetch(`https://arcane-garden-55931.herokuapp.com/admin/${email}`,{
   method:'PUT',
   headers:{
     'content-type':'application/json'
@@ -32,7 +32,7 @@ const handelCancelAdmin=(email)=>{
   const adminRole={
     role:""
   }
-  fetch(`http://localhost:5000/admin/${email}`,{
+  fetch(`https://arcane-garden-55931.herokuapp.com/admin/${email}`,{
     method:'PUT',
     headers:{
       'content-type':'application/json'
