@@ -68,7 +68,7 @@ const MyOrders = () => {
           <td>{singleData.quantity}</td>
           <td>{singleData.totalPrice}</td>
           <td> {singleData?.paid===true?"paid":<button onClick={()=>handelPayment(singleData._id)}  class="btn btn-info">Pay Now</button>} </td>
-          <td> {singleData?.paid===true?singleData.transitionID:<button onClick={()=>handelDeleteOrder(singleData._id)} class="btn btn-success">Cancel Order</button>}</td>
+          <td> {singleData?.paid===true?singleData?.transitionID:<button onClick={()=>handelDeleteOrder(singleData._id)} class="btn btn-success">Cancel Order</button>}</td>
           
           </tr>
           )}

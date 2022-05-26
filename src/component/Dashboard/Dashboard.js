@@ -34,7 +34,7 @@ const Dashboard = () => {
      {admin?.role==="admin"? "":<li><Link to='myOrders'>My Orders</Link></li>} 
      {admin?.role==="admin"? "":<li><Link to='addReview'>Add a Review</Link></li>} 
       
-      <li><Link to='profile'>My Profile</Link></li>
+      <li><Link to=''>My Profile</Link></li>
       {admin?.role==="admin"?<li><Link to='mangeOrder'>Mange All Orders</Link></li> :""} 
       {admin?.role==="admin"?<li><Link to='addProduct'>Add A Product</Link></li> :""}
       {admin?.role==="admin"?<li><Link to='makeAdmin'>Make Admin</Link></li> :""}

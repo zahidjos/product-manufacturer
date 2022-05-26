@@ -18,6 +18,7 @@ import MangeOrder from './component/Dashboard/MangeOrder/MangeOrder';
 import AddProduct from './component/Dashboard/AddProduct/AddProduct';
 import MangeProduct from './component/Dashboard/MangeProduct/MangeProduct';
 import Payment from './component/Dashboard/Payment/Payment';
+import UpdateProfile from './component/Dashboard/UpdateProfile/UpdateProfile';
 
 
 function App() {
@@ -34,12 +35,13 @@ function App() {
        <Route path='/dashboard' element={<RequireAuth> <Dashboard></Dashboard></RequireAuth>}>
          <Route path='myOrders' element={<RequireAuth> <MyOrders></MyOrders></RequireAuth>}></Route>
          <Route path='addReview' element={<MyReview></MyReview>}></Route>
-         <Route path='profile' element={<Profile></Profile>}></Route>
+         <Route path='' element={<Profile></Profile>}></Route>
          <Route path='mangeOrder' element={<MangeOrder></MangeOrder>}></Route>
          <Route path='addProduct' element={<AddProduct></AddProduct>}></Route>
          <Route path='makeAdmin' element={<MakeAdmin></MakeAdmin>}></Route>
          <Route path='mangeProduct' element={<MangeProduct></MangeProduct>}></Route>
          <Route path='payment/:id' element={<Payment></Payment>}></Route>
+         <Route path='updateProfile' element={<UpdateProfile></UpdateProfile>}></Route>
        </Route>
      </Routes>
      
