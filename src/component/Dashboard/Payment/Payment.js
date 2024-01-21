@@ -9,7 +9,7 @@ const Payment = () => {
     const param=useParams();
     const [order,setOrder]=useState({});
     useState(()=>{
-        fetch(`https://arcane-garden-55931.herokuapp.com/orders/${param.id}`)
+        fetch(`https://manufacture-node.onrender.com/orders/${param.id}`)
         .then(res=>res.json())
         .then(result=>{setOrder(result)
               console.log(result)       

@@ -19,7 +19,7 @@ const Purchase = () => {
     const param=useParams();
     // console.log(param.id)
     useEffect(()=>{
-      fetch(`https://arcane-garden-55931.herokuapp.com/purchase/${param.id}`)
+      fetch(`https://manufacture-node.onrender.com/purchase/${param.id}`)
       .then(res=>res.json())
       .then(data=>setMainData(data))
     },[])

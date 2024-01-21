@@ -83,7 +83,7 @@ const CheckoutForm = ({order}) => {
             transitionID:confirmPayment
         }
        if(confirmPayment){
-        fetch(`https://arcane-garden-55931.herokuapp.com/order/${order._id}`,{
+        fetch(`https://manufacture-node.onrender.com/order/${order._id}`,{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'

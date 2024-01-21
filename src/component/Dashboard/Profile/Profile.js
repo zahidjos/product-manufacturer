@@ -12,7 +12,7 @@ const Profile = () => {
     const[profileData,setProfileData]=useState({})
     useEffect(()=>{
     if(user){
-        fetch(`https://arcane-garden-55931.herokuapp.com/profile/${user.email}`)
+        fetch(`https://manufacture-node.onrender.com/profile/${user.email}`)
         .then(res=>res.json())
         .then(result=>setProfileData(result))
     }

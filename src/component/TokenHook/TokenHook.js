@@ -9,7 +9,7 @@ const TokenHook = (user) => {
        
         const userEmail={email:email}
         if(email){
-            fetch(`https://arcane-garden-55931.herokuapp.com/users/${email}`,{
+            fetch(`https://manufacture-node.onrender.com/users/${email}`,{
                 method:'PUT',
                 headers:{
                   'content-type':'application/json'

@@ -35,7 +35,7 @@ const AddProduct = () => {
                     image:image
                 }
                 
-                fetch('https://arcane-garden-55931.herokuapp.com/items',{
+                fetch('https://manufacture-node.onrender.com/items',{
                     method:'POST',
                     headers:{
                       'content-type':'application/json'

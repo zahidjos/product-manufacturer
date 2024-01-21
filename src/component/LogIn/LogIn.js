@@ -59,7 +59,8 @@ const LogIn = () => {
   <label class="label">
     <span class="label-text">Email</span>
    </label>
-  <input type="email" className="input input-bordered w-full max-w-xs" placeholder="Type here" {...register("email", { required:{
+  <input type="email" className="input input-bordered w-full max-w-xs" placeholder="Type here" {...register("email", { 
+    required:{
       value:true,
       message:"Email is require"
   } ,

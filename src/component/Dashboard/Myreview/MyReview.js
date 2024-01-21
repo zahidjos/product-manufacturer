@@ -18,7 +18,7 @@ const handelReview=(event)=>{
      point:point,
      review:review
  }
- fetch('https://arcane-garden-55931.herokuapp.com/review',{
+ fetch('https://manufacture-node.onrender.com/review',{
       method:'POST',
       headers:{
         'content-type':'application/json'

@@ -15,7 +15,7 @@ console.log(email);
 const adminRole={
   role:"admin"
 }
-fetch(`https://arcane-garden-55931.herokuapp.com/admin/${email}`,{
+fetch(`https://manufacture-node.onrender.com/admin/${email}`,{
   method:'PUT',
   headers:{
     'content-type':'application/json'

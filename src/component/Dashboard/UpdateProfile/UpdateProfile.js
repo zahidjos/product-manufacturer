@@ -23,7 +23,7 @@ const UpdateProfile = () => {
             age:age
         }
         // console.log(profileData);
-        fetch(`https://arcane-garden-55931.herokuapp.com/profile/${email}`,{
+        fetch(`https://manufacture-node.onrender.com/profile/${email}`,{
             method:'PUT',
             headers:{
               'content-type':'application/json'

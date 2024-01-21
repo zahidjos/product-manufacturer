@@ -26,7 +26,7 @@ const MyOrders = () => {
       }
       const handelDeleteOrder=(id)=>{
 // console.log("hi",id);
-         fetch(`https://arcane-garden-55931.herokuapp.com/order/${id}`,{
+         fetch(`https://manufacture-node.onrender.com/order/${id}`,{
             method:'DELETE'
          })
          .then(res=>res.json())

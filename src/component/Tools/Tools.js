@@ -8,7 +8,7 @@ const Tools = (props) => {
 
     const [data,setData]=useState([]);
     useEffect(()=>{
-        fetch('https://arcane-garden-55931.herokuapp.com/items')
+        fetch('https://manufacture-node.onrender.com/items')
         .then(res=>res.json())
         .then(data=>setData(data))
     },[])

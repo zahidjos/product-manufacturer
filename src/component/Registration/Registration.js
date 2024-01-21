@@ -48,7 +48,7 @@ const Registration = () => {
     
     return (
         
-            <div className='pt-10'>
+  <div className='pt-10'>
 
             
 <div className='w-1/3 mx-auto'>
